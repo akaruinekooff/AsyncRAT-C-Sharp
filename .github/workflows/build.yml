@@ -28,6 +28,9 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
+    - name: Install .NET Framework 4.0 Developer Pack
+      run: choco install netfx-4.0-devpack -y
+
     # Install NuGet packages
     - name: Install NuGet Packages
       run: nuget restore AsyncRAT-C#/AsyncRAT-Sharp.sln
