@@ -28,8 +28,15 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Install .NET Framework 4.0 Developer Pack
-      run: choco install netfx-4.0-devpack -y
+    - name: Download .NET Framework 4.0 Redistributable
+      shell: pwsh
+      run: |
+        Invoke-WebRequest -Uri "https://download.microsoft.com/download/9/5/a/95a9616b-7a37-4af6-bc36-d6ea96c8daae/dotNetFx40_Full_x86_x64.exe" -OutFile "dotNetFx40.exe"
+
+    - name: Install .NET Framework 4.0
+      shell: cmd
+      run: |
+        dotNetFx40.exe /q /norestart
 
     # Install NuGet packages
     - name: Install NuGet Packages
